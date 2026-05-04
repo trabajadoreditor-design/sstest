@@ -88,8 +88,34 @@
       font-size: 0.82rem;
       color: #333;
       line-height: 1.5;
-      flex: 1;
-      margin-bottom: 16px;
+      margin-bottom: 8px;
+    }
+
+    .card-desc-text {
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .card-desc-text.expanded {
+      display: block;
+      overflow: visible;
+    }
+
+    .btn-more {
+      background: none;
+      border: none;
+      padding: 0;
+      font-size: 0.78rem;
+      color: #888;
+      cursor: pointer;
+      margin-bottom: 12px;
+      text-align: left;
+    }
+
+    .btn-more:hover {
+      color: #333;
     }
 
     .btn-video {
@@ -149,7 +175,7 @@
         <div class="card-body">
           <div class="card-name">Эрик</div>
           <div class="card-lang">Испанский язык</div>
-          <div class="card-desc">Опыт работы со взрослыми и детьми более 5 лет, подготовка к экзаменам любого уровня (DELE y SIELE до C2), разговорная практика</div>
+          <div class="card-desc"><span class="card-desc-text">Опыт работы со взрослыми и детьми более 5 лет, подготовка к экзаменам любого уровня (DELE y SIELE до C2), разговорная практика</span><button class="btn-more">Читать далее</button></div>
           <button class="btn-video">Смотреть видео</button>
           <button class="btn-choose">Хочу этого преподавателя!</button>
         </div>
@@ -162,7 +188,7 @@
         <div class="card-body">
           <div class="card-name">Алехандро</div>
           <div class="card-lang">Испанский язык</div>
-          <div class="card-desc">Опыт работы со взрослыми и детьми более 10 лет, подготовка к экзаменам любого уровня (DELE y SIELE до C2), разговорная практика</div>
+          <div class="card-desc"><span class="card-desc-text">Опыт работы со взрослыми и детьми более 10 лет, подготовка к экзаменам любого уровня (DELE y SIELE до C2), разговорная практика</span><button class="btn-more">Читать далее</button></div>
           <button class="btn-video">Смотреть видео</button>
           <button class="btn-choose">Хочу этого преподавателя!</button>
         </div>
@@ -184,7 +210,7 @@
           <div class="card-body">
             <div class="card-name">Лара</div>
             <div class="card-lang">Английский язык</div>
-            <div class="card-desc">Носитель языка (ЮАР), с украинскими и американскими корнями, филолог и психолог. Опыт с детьми и взрослыми, преподавание английского до уровня C2</div>
+            <div class="card-desc"><span class="card-desc-text">Носитель языка (ЮАР), с украинскими и американскими корнями, филолог и психолог. Опыт с детьми и взрослыми, преподавание английского до уровня C2</span><button class="btn-more">Читать далее</button></div>
             <button class="btn-video">Смотреть видео</button>
             <button class="btn-choose">Хочу этого преподавателя!</button>
           </div>
@@ -202,7 +228,7 @@
           <div class="card-body">
             <div class="card-name">Лидия</div>
             <div class="card-lang">Украинский язык</div>
-            <div class="card-desc">Профессиональная актриса театра и кино: разговорный украинский, постановка произношения и артикуляции, помощь в избавлении от суржика</div>
+            <div class="card-desc"><span class="card-desc-text">Профессиональная актриса театра и кино: разговорный украинский, постановка произношения и артикуляции, помощь в избавлении от суржика</span><button class="btn-more">Читать далее</button></div>
             <button class="btn-video">Смотреть видео</button>
             <button class="btn-choose">Хочу этого преподавателя!</button>
           </div>
@@ -220,7 +246,7 @@
           <div class="card-body">
             <div class="card-name">Татьяна</div>
             <div class="card-lang">Болгарский язык</div>
-            <div class="card-desc">Опыт более 25 лет: преподаватель болгарского и русского языка, экс-завуч (20+ лет), экзаменатор вступительных экзаменов в ВУЗы Болгарии. Подготовка к поступлению и разговорный болгарский язык</div>
+            <div class="card-desc"><span class="card-desc-text">Опыт более 25 лет: преподаватель болгарского и русского языка, экс-завуч (20+ лет), экзаменатор вступительных экзаменов в ВУЗы Болгарии. Подготовка к поступлению и разговорный болгарский язык</span><button class="btn-more">Читать далее</button></div>
             <button class="btn-choose">Хочу этого преподавателя!</button>
           </div>
         </div>
@@ -229,5 +255,17 @@
 
   </div>
 
+  <script>
+    document.querySelectorAll('.btn-more').forEach(function(btn) {
+      var text = btn.previousElementSibling;
+      if (text.scrollHeight <= text.clientHeight) {
+        btn.style.display = 'none';
+      }
+      btn.addEventListener('click', function() {
+        var expanded = text.classList.toggle('expanded');
+        btn.textContent = expanded ? 'Скрыть' : 'Читать далее';
+      });
+    });
+  </script>
 </body>
 </html>
